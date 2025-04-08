@@ -82,8 +82,8 @@ const Index = () => {
                       <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
                     </svg>
                   </div>
-                  <span className="text-lg font-semibold text-white">10+ TB</span>
-                  <span className="text-sm text-gray-400">Maximum File Size</span>
+                  <span className="text-lg font-semibold text-white">10+ GB</span>
+                  <span className="text-sm text-gray-400">Maximum File Size in RTC transfer</span>
                 </div>
                 
                 {/* Middle floating card */}
@@ -96,7 +96,7 @@ const Index = () => {
                     </svg>
                   </div>
                   <span className="text-lg font-semibold text-white">End-to-End</span>
-                  <span className="text-sm text-gray-400">Encryption</span>
+                  <span className="text-sm text-gray-400">Encryption with blockchain</span>
                 </div>
                 
                 {/* Right floating card */}
@@ -106,8 +106,8 @@ const Index = () => {
                       <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                     </svg>
                   </div>
-                  <span className="text-lg font-semibold text-white">Military-Grade</span>
-                  <span className="text-sm text-gray-400">Security Protocols</span>
+                  <span className="text-lg font-semibold text-white">Max Security</span>
+                  <span className="text-sm text-gray-400">With AWS S3 systems</span>
                 </div>
               </div>
               
