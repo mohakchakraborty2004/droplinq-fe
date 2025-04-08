@@ -1,8 +1,8 @@
 "use client"
+import React, { useState, useEffect } from 'react';
+import AnimatedBackground from '@/components/AnimatedBackground';
 
-import { useState, useEffect } from 'react';
-
-export default function DropLinqLanding() {
+const Index = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   
   useEffect(() => {
@@ -16,18 +16,19 @@ export default function DropLinqLanding() {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden relative">
-      {/* Background gradient overlay - made stronger and more visible */}
+      {/* Background is now pure black */}
       <div className="fixed inset-0 z-0">
-        <div className="absolute inset-0 bg-black">
-          <div className="absolute inset-0 bg-gradient-radial from-red-800 via-orange-900 to-black opacity-60"></div>
-        </div>
+        <div className="absolute inset-0 bg-black"></div>
       </div>
+      
+      {/* Animated Background */}
+      <AnimatedBackground />
       
       {/* Content */}
       <div className="relative z-10">
         {/* Header */}
         <header className={`sticky top-0 transition-all duration-300 ${isScrolled ? 'bg-black/80 backdrop-blur-md py-3' : 'bg-transparent py-6'}`}>
-          <div className="container mx-auto px-6 flex justify-between items-center">
+        <div className="container mx-auto px-6 flex justify-between items-center">
             <div className="flex items-center gap-2">
               <div className="bg-gradient-to-r from-red-600 to-orange-500 rounded-lg p-1 w-8 h-8 flex items-center justify-center">
                 <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -54,7 +55,7 @@ export default function DropLinqLanding() {
         
         {/* Hero Section */}
         <section className="pt-20 pb-32 md:pt-32 md:pb-40">
-          <div className="container mx-auto px-6 text-center">
+        <div className="container mx-auto px-6 text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6 max-w-4xl mx-auto leading-tight text-white">
               Transfer Files <span className="bg-gradient-to-r from-red-500 to-orange-400 text-transparent bg-clip-text">Without Limits</span>
             </h1>
@@ -71,71 +72,97 @@ export default function DropLinqLanding() {
               </button>
             </div>
             
-            {/* Hero image/animation */}
+            {/* Interactive Feature Illustration */}
             <div className="mt-16 relative">
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-radial from-red-500/20 to-transparent rounded-full blur-3xl"></div>
-              <div className="relative bg-black/30 border border-gray-800 p-4 rounded-xl backdrop-blur-sm max-w-4xl mx-auto overflow-hidden">
-                <div className="h-64 md:h-80 rounded-lg bg-black/50 flex items-center justify-center">
-                  <div className="w-48 h-48 bg-gradient-to-br from-red-600 to-orange-500 rounded-xl flex items-center justify-center relative overflow-hidden">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="w-24 h-24 text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                      <polyline points="7 10 12 15 17 10" />
-                      <line x1="12" y1="15" x2="12" y2="3" />
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                {/* Left floating card */}
+                <div className="bg-black/30 backdrop-blur-md border border-gray-800 p-5 rounded-xl shadow-lg transform hover:-translate-y-2 transition-transform duration-300 flex flex-col items-center">
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-red-600 to-orange-500 flex items-center justify-center mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
                     </svg>
-                    <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-orange-600/30 rounded-full blur-xl"></div>
                   </div>
+                  <span className="text-lg font-semibold text-white">10+ TB</span>
+                  <span className="text-sm text-gray-400">Maximum File Size</span>
+                </div>
+                
+                {/* Middle floating card */}
+                <div className="bg-black/40 backdrop-blur-md border border-gray-800 p-5 rounded-xl shadow-lg transform translate-y-4 md:translate-y-0 hover:-translate-y-2 transition-transform duration-300 flex flex-col items-center z-10">
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-red-600 to-orange-500 flex items-center justify-center mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                  </div>
+                  <span className="text-lg font-semibold text-white">End-to-End</span>
+                  <span className="text-sm text-gray-400">Encryption</span>
+                </div>
+                
+                {/* Right floating card */}
+                <div className="bg-black/30 backdrop-blur-md border border-gray-800 p-5 rounded-xl shadow-lg transform hover:-translate-y-2 transition-transform duration-300 flex flex-col items-center">
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-red-600 to-orange-500 flex items-center justify-center mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    </svg>
+                  </div>
+                  <span className="text-lg font-semibold text-white">Military-Grade</span>
+                  <span className="text-sm text-gray-400">Security Protocols</span>
                 </div>
               </div>
+              
+              {/* Background glow */}
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-md bg-gradient-radial from-red-500/10 to-transparent rounded-full blur-3xl -z-10"></div>
             </div>
           </div>
         </section>
         
         {/* Features Section */}
         <section id="features" className="py-20 bg-black/50">
-          <div className="container mx-auto px-6">
-            <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center text-white">Powerful Features</h2>
+        <div className="container mx-auto px-6">
+            <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center bg-gradient-to-r from-red-500 to-orange-400 text-transparent bg-clip-text">Our Offerings</h2>
             
             <div className="grid md:grid-cols-3 gap-8">
               {/* Feature 1 */}
-              <div className="bg-gradient-to-br from-black to-black/20 p-6 rounded-xl border border-gray-800 backdrop-blur-sm hover:border-red-900 transition-colors">
-                <div className="bg-gradient-to-r from-red-600 to-orange-500 w-12 h-12 rounded-lg flex items-center justify-center mb-6">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <div className="bg-gradient-to-br from-black/60 to-black/40 p-8 rounded-xl border border-gray-800 backdrop-blur-lg hover:border-red-900 transition-colors shadow-xl">
+                <div className="bg-gradient-to-r from-red-600 to-orange-500 w-14 h-14 rounded-lg flex items-center justify-center mb-6">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-7 h-7 text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
                     <path d="M8 12h8" />
                     <path d="M12 8v8" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold mb-3 text-white">S3 Based Secure Sharing</h3>
-                <p className="text-gray-300">
+                <h3 className="text-2xl font-semibold mb-4 text-white">S3 Based Secure Sharing</h3>
+                <p className="text-gray-300 text-lg">
                   Enterprise-grade security with AWS S3 integration. Encrypt your files end-to-end and control access with customizable permissions and expiration dates. Perfect for confidential documents and sensitive data.
                 </p>
               </div>
               
               {/* Feature 2 */}
-              <div className="bg-gradient-to-br from-black to-black/20 p-6 rounded-xl border border-gray-800 backdrop-blur-sm hover:border-red-900 transition-colors">
-                <div className="bg-gradient-to-r from-red-600 to-orange-500 w-12 h-12 rounded-lg flex items-center justify-center mb-6">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <div className="bg-gradient-to-br from-black/60 to-black/40 p-8 rounded-xl border border-gray-800 backdrop-blur-lg hover:border-red-900 transition-colors shadow-xl">
+                <div className="bg-gradient-to-r from-red-600 to-orange-500 w-14 h-14 rounded-lg flex items-center justify-center mb-6">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-7 h-7 text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
                     <path d="M12 16l4-4-4-4" />
                     <path d="M8 12h8" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold mb-3 text-white">WebRTC Large File Transfer</h3>
-                <p className="text-gray-300">
+                <h3 className="text-2xl font-semibold mb-4 text-white">WebRTC Large File Transfer</h3>
+                <p className="text-gray-300 text-lg">
                   Lightning-fast peer-to-peer transfers for files of any size without server limitations. Transfer multi-gigabyte files directly between devices, bypassing traditional upload/download constraints.
                 </p>
               </div>
               
               {/* Feature 3 */}
-              <div className="bg-gradient-to-br from-black to-black/20 p-6 rounded-xl border border-gray-800 backdrop-blur-sm hover:border-red-900 transition-colors">
-                <div className="bg-gradient-to-r from-red-600 to-orange-500 w-12 h-12 rounded-lg flex items-center justify-center mb-6">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <div className="bg-gradient-to-br from-black/60 to-black/40 p-8 rounded-xl border border-gray-800 backdrop-blur-lg hover:border-red-900 transition-colors shadow-xl">
+                <div className="bg-gradient-to-r from-red-600 to-orange-500 w-14 h-14 rounded-lg flex items-center justify-center mb-6">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-7 h-7 text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
                     <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold mb-3 text-white">Decentralized Blockchain Storage</h3>
-                <p className="text-gray-300">
+                <h3 className="text-2xl font-semibold mb-4 text-white">Decentralized Blockchain Storage</h3>
+                <p className="text-gray-300 text-lg">
                   Future-proof file sharing with distributed ledger technology. Your data lives on the blockchain, ensuring permanent availability and immunity from server failures or censorship attempts.
                 </p>
               </div>
@@ -145,7 +172,7 @@ export default function DropLinqLanding() {
         
         {/* CTA Section */}
         <section className="py-20">
-          <div className="container mx-auto px-6 text-center">
+        <div className="container mx-auto px-6 text-center">
             <div className="bg-gradient-to-br from-black/80 to-black/40 border border-gray-800 rounded-xl p-10 backdrop-blur-sm relative overflow-hidden">
               <div className="absolute -top-24 -right-24 w-64 h-64 bg-gradient-radial from-red-600/20 to-transparent rounded-full blur-3xl"></div>
               <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-gradient-radial from-orange-600/20 to-transparent rounded-full blur-3xl"></div>
@@ -163,7 +190,7 @@ export default function DropLinqLanding() {
         
         {/* Footer */}
         <footer className="py-12 bg-black/70">
-          <div className="container mx-auto px-6">
+        <div className="container mx-auto px-6">
             <div className="flex justify-between items-center flex-col md:flex-row gap-6">
               <div className="flex items-center gap-2">
                 <div className="bg-gradient-to-r from-red-600 to-orange-500 rounded-lg p-1 w-8 h-8 flex items-center justify-center">
@@ -212,4 +239,6 @@ export default function DropLinqLanding() {
       </div>
     </div>
   );
-}
+};
+
+export default Index;
