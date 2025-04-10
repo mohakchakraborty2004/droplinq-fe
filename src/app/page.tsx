@@ -41,13 +41,12 @@ const Index = () => {
             </div>
             
             <nav className="hidden md:flex items-center gap-8">
-              <a href="#features" className="text-gray-300 hover:text-white transition-colors">Features</a>
-              <a href="#how-it-works" className="text-gray-300 hover:text-white transition-colors">How It Works</a>
-              <a href="#pricing" className="text-gray-300 hover:text-white transition-colors">Pricing</a>
+              <a href="#features" className="font-bold text-gray-300 hover:text-orange-600 transition-colors">Features</a>
+              <a href="#how-it-works" className="font-bold text-gray-300 hover:text-orange-600 transition-colors">How It Works</a>
+              <a href="#pricing" className="font-bold text-gray-300 hover:text-orange-600 transition-colors">Pricing</a>
             </nav>
             
             <div className="flex gap-4 items-center">
-              <button className="hidden md:block text-gray-300 hover:text-white transition-colors">Login</button>
               <button className="px-4 py-2 bg-gradient-to-r from-red-600 to-orange-500 rounded-lg font-medium hover:opacity-90 transition-opacity text-white">Get Started</button>
             </div>
           </div>

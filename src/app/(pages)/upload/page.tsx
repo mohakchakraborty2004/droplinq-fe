@@ -8,9 +8,9 @@ export default function Upload() {
     const [filename , setFilename] = useState<any>("")
 
     return (
-        <div className="bg-black h-[100vh]">
+        <div className="bg-black h-[100vh] flex justify-center items-center">
 
-            <div className="flex">
+            <div className="flex flex-col">
             <InputFile upload={(e : any)=> {
                  if (e.target.files && e.target.files.length > 0) {
                     setSelectedFile(e.target.files[0]);
@@ -18,8 +18,12 @@ export default function Upload() {
                   }
 
             }}
-          fileName={!filename ? "Choose a File" : filename}
+            fileName={!filename ? "Choose a File" : filename}
             ></InputFile>
+
+            <div className="text-green-500 mt-[3rem]">
+                Download Link 
+            </div>
 
             </div>
 
