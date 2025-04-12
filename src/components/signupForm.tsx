@@ -1,14 +1,24 @@
 "use client"
 
 import { useState } from 'react';
+import axios from "axios";
+import { useRouter } from 'next/navigation';
+
+interface response { 
+  msg : string, 
+  token? : string
+}
 
 export default function SignupForm() {
   const [formData, setFormData] = useState({
-    name: '',
+    username: '',
     email: '',
-    password: '',
-    confirmPassword: ''
+    password: ''
   });
+  const [msg , setMsg] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const router = useRouter()
 
   const handleChange = (e : any) => {
     const { name, value } = e.target;
@@ -18,10 +28,24 @@ export default function SignupForm() {
     }));
   };
 
-  const handleSubmit = (e : any) => {
+  const handleSubmit = async (e : any) => {
+    setLoading(true)
     e.preventDefault();
     console.log('Form submitted:', formData);
-    // Add your form submission logic here
+    try {
+      const response = await axios.post<response>(`http://localhost:8000/api/v1/user/signup`, formData);
+      const msg = response.data?.msg
+      const token = response.data?.token as string
+      if(token) {
+        localStorage.setItem("token", token);
+        setMsg(msg)
+        // alert("signedup");
+        setLoading(false)
+        router.push("/upload")
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -32,13 +56,13 @@ export default function SignupForm() {
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label htmlFor="name" className="block mb-2 font-medium text-orange-400">
-              Full Name
+              Username
             </label>
             <input
               type="text"
-              id="name"
-              name="name"
-              value={formData.name}
+              id="username"
+              name="username"
+              value={formData.username}
               onChange={handleChange}
               className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-orange-500"
               required
@@ -75,26 +99,12 @@ export default function SignupForm() {
             />
           </div>
           
-          <div className="mb-6">
-            <label htmlFor="confirmPassword" className="block mb-2 font-medium text-orange-400">
-              Confirm Password
-            </label>
-            <input
-              type="password"
-              id="confirmPassword"
-              name="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-orange-500"
-              required
-            />
-          </div>
           
           <button
             type="submit"
             className="w-full bg-orange-500 hover:bg-orange-600 text-white font-medium py-2 px-4 rounded-md transition duration-300"
           >
-            Create Account
+            {loading ? "signing..." : "Start Uploading"}
           </button>
           
           <p className="mt-4 text-center text-gray-400">

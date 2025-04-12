@@ -3,6 +3,8 @@
 import { InputFile } from "@/components/inputForm"
 import { useState } from "react"
 import axios from "axios"
+import { DownloadComp } from "@/components/downloadComp"
+import DownloadLinkCopier from "@/components/downloadLink"
 
 interface response {
     msg: string,
@@ -22,7 +24,13 @@ export default function Upload() {
         formData.append('file', selectedFile);
 
         try {
-            const res = await axios.post<response>('http://localhost:8000/api/v1/file/upload', formData);
+            const res = await axios.post<response>('http://localhost:8000/api/v1/file/upload', formData, 
+                {
+                    headers : {
+                        authorization : `Bearer ${localStorage.getItem("token")}`
+                    }
+                }
+            );
             const link = res.data?.DownloadLink;
             setLink(link);
             setMsg(res.data?.msg)
@@ -60,8 +68,11 @@ export default function Upload() {
                             msg
                         </div>
                     )}
-                    <span className="text-gray-500">Download Link : </span>
-                    {!link ? "upload a file to share" : link}
+                    {/* <span className="text-gray-500">Download Link : </span>
+                    {!link ? "upload a file to share" : link} */}
+                    <div>
+                        <DownloadLinkCopier downloadLink={!link ? "No file Uploaded" : link}></DownloadLinkCopier>
+                    </div>
                 </div>
 
             </div>

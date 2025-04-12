@@ -1,10 +1,11 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import AnimatedBackground from '@/components/AnimatedBackground';
+import { useRouter } from 'next/navigation';
 
 const Index = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  
+  const router = useRouter();
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -16,12 +17,12 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden relative">
-      {/* Background is now pure black */}
+     
       <div className="fixed inset-0 z-0">
         <div className="absolute inset-0 bg-black"></div>
       </div>
       
-      {/* Animated Background */}
+    
       <AnimatedBackground />
       
       {/* Content */}
@@ -47,7 +48,11 @@ const Index = () => {
             </nav>
             
             <div className="flex gap-4 items-center">
-              <button className="px-4 py-2 bg-gradient-to-r from-red-600 to-orange-500 rounded-lg font-medium hover:opacity-90 transition-opacity text-white">Get Started</button>
+              <button className="px-4 py-2 bg-gradient-to-r from-red-600 to-orange-500 rounded-lg font-medium hover:opacity-90 transition-opacity text-white"
+              onClick={()=> {
+                router.push("/auth")
+              }}
+              >Sign up</button>
             </div>
           </div>
         </header>

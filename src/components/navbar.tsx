@@ -25,7 +25,9 @@ export default function Navbar() {
                   <line x1="12" y1="15" x2="12" y2="3" />
                 </svg>
               </div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-red-500 to-orange-400 text-transparent bg-clip-text">DropLinq</span>
+              <a href="/">
+              <span className="text-2xl font-bold bg-gradient-to-r from-red-500 to-orange-400 text-transparent bg-clip-text cursor-pointer">DropLinq</span>
+              </a>
             </div>
             
             <nav className="hidden md:flex items-center gap-8">
